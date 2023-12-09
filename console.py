@@ -116,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
         updating attribute
         (save the change into the JSON file)
 
-        usage: (hbnb) update <class name> <id> <attribute name> <attribute value>
+        usage: update <class name> <id> <attribute name> <attribute value>
         """
         if not arg:
             print("** class name missing **")
