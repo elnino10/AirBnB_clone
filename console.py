@@ -106,7 +106,8 @@ class HBNBCommand(cmd.Cmd):
         if arg and arg not in all_class:
             print("** class doesn't exist **")
         elif arg:
-            print([str(v) for k, v in storage.all().items() if k.split(".")[0] == arg])
+            print([str(v) for k, v in storage.all().items()
+                   if k.split(".")[0] == arg])
         else:
             print([str(v) for k, v in storage.all().items()])
 
