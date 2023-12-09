@@ -3,7 +3,8 @@
 
 import cmd
 
-from models import storage, all_class
+from models import all_class, storage
+
 
 class HBNBCommand(cmd.Cmd):
     """hbnb command interpreter class
@@ -32,7 +33,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """
-        Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id
+        Creates a new instance of BaseModel, saves it (to the JSON file)
+        and prints the id
 
         usage: (hbnb) create <class name>
         """
@@ -48,7 +50,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        Prints the string representation of an instance based on the class name and id
+        Prints the string representation of an instance based on the
+        class name and id
 
         usage: (hbnb) show <class name> <id>
         """
@@ -70,7 +73,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """
-        Deletes an instance based on the class name and id (save the change into the JSON file)
+        Deletes an instance based on the class name and id
+        (save the change into the JSON file)
 
         usage: (hbnb) destroy <class name> <id>
         """
@@ -93,7 +97,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """
-        Prints all string representation of all instances based or not on the class name
+        Prints all string representation of all instances based or
+        not on the class name
 
         usage: (hbnb) all <class name>
         usage: (hbnb) all
@@ -101,18 +106,17 @@ class HBNBCommand(cmd.Cmd):
         if arg and arg not in all_class:
             print("** class doesn't exist **")
         elif arg:
-            print(
-                [str(v) for k, v in storage.all().items() if k.split(".")[0] == arg]
-            )
+            print([str(v) for k, v in storage.all().items() if k.split(".")[0] == arg])
         else:
             print([str(v) for k, v in storage.all().items()])
 
     def do_update(self, arg):
         """
-        Updates an instance based on the class name and id by adding or updating attribute
+        Updates an instance based on the class name and id by adding or
+        updating attribute
         (save the change into the JSON file)
 
-        usage: (hbnb) update <class name> <id> <attribute name> "<attribute value>
+        usage: (hbnb) update <class name> <id> <attribute name> <attribute value>
         """
         if not arg:
             print("** class name missing **")
