@@ -4,7 +4,13 @@
 import json
 import os
 
+from models.amenity import Amenity
 from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class FileStorage:
@@ -26,26 +32,21 @@ class FileStorage:
         """serializes __objects to the JSON file (path: __file_path)"""
         my_dict = {key: value.to_dict() for key, value in self.__objects.items()}
         with open(self.__file_path, "w", encoding="utf-8") as file:
-            json.dump(my_dict, file, indent=3)
+            json.dump(my_dict, file)
 
     def reload(self):
         """deserializes the JSON file to __objects (only if the JSON file (__file_path) exists"""
+        all_class = {
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review,
+        }
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 self.__objects = {
-                    key: BaseModel(**val) for key, val in json.load(file).items()
+                    key: all_class[val["__class__"]](**val) for key, val in json.load(file).items()
                 }
-
-        # using a for loop
-        # if os.path.exists(self.__file_path):
-        #     with open(self.__file_path, "r", encoding="utf-8") as f:
-        #         # deserialize file content
-        #         json_data = json.load(f)
-
-        #         my_obj = {}
-        #         # for each key of the dict, assign an object instance to it
-        #         for key, val in json_data.items():
-        #             my_obj[key] = BaseModel(**val)
-
-        #         # upadate the __objects attribbute
-        #         self.__objects = my_obj
