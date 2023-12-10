@@ -48,4 +48,3 @@ class BaseModel:
         my_dict["updated_at"] = self.updated_at.isoformat()
         my_dict["__class__"] = self.__class__.__name__
         return my_dict
-    
