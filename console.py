@@ -145,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
                             pass
                         else:
                             my_model = storage.all()[key]
-                            setattr(my_model, eval(my_arg[2]), eval(my_arg[3]))
+                            setattr(my_model, my_arg[2], eval(my_arg[3]))
                             storage.all()[key].save()
 
     def default(self, line):
