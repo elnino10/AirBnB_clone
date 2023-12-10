@@ -106,8 +106,7 @@ class HBNBCommand(cmd.Cmd):
         if arg and arg not in all_class:
             print("** class doesn't exist **")
         elif arg:
-            print([str(v) for k, v in storage.all().items()
-                   if k.split(".")[0] == arg])
+            print([str(v) for k, v in storage.all().items() if k.split(".")[0] == arg])
         else:
             print([str(v) for k, v in storage.all().items()])
 
@@ -146,9 +145,10 @@ class HBNBCommand(cmd.Cmd):
                             my_model = storage.all()[key]
                             setattr(my_model, my_arg[2], eval(my_arg[3]))
                             storage.all()[key].save()
+
     def default(self, line):
         """returns a list of the string representation of a named class
-        
+
         Usage: <class_name>.all()
         """
         args = line.split(".")
@@ -157,8 +157,15 @@ class HBNBCommand(cmd.Cmd):
             self.do_all(class_name)
         elif args[1] == "count()":
             if class_name in all_class:
-                print(len([str(v) for k, v in storage.all().items()
-                   if k.split(".")[0] == class_name]))
+                print(
+                    len(
+                        [
+                            str(v)
+                            for k, v in storage.all().items()
+                            if k.split(".")[0] == class_name
+                        ]
+                    )
+                )
         elif args[1].startswith("show"):
             class_id = args[1].split("(")[1].split(")")[0]
             arg = f"{args[0]} {class_id}"
@@ -167,7 +174,11 @@ class HBNBCommand(cmd.Cmd):
             class_id = args[1].split("(")[1].split(")")[0]
             arg = f"{args[0]} {class_id}"
             self.do_destroy(arg)
-
+        elif args[1].startswith("update"):
+            arguments = args[1].split("(")[1].split(")")[0]
+            arguments = arguments.split(", ")
+            arg = f"{args[0]} {arguments[0]} {arguments[1]} {arguments[2]}"
+            self.do_update(arg)
 
 
 if __name__ == "__main__":
