@@ -146,7 +146,15 @@ class HBNBCommand(cmd.Cmd):
                             my_model = storage.all()[key]
                             setattr(my_model, my_arg[2], eval(my_arg[3]))
                             storage.all()[key].save()
-
+    def default(self, line):
+        """returns a list of the string representation of a named class
+        
+        Usage: <class_name>.all()
+        """
+        args = line.split(".")
+        class_name = args[0]
+        if args[1] == "all()":
+            self.do_all(class_name)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
