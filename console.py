@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """the console command interpreter module"""
 
+import ast
 import cmd
 
 from models import all_class, storage
@@ -151,7 +152,7 @@ class HBNBCommand(cmd.Cmd):
 
         Usage: <class_name>.all()
         """
-        args = line.split(".")
+        args = line.split(".", 1)
         class_name = args[0]
         if args[1] == "all()":
             self.do_all(class_name)
@@ -168,17 +169,25 @@ class HBNBCommand(cmd.Cmd):
                 )
         elif args[1].startswith("show"):
             class_id = args[1].split("(")[1].split(")")[0]
-            arg = f"{args[0]} {class_id}"
+            arg = f"{class_name} {class_id}"
             self.do_show(arg)
         elif args[1].startswith("destroy"):
             class_id = args[1].split("(")[1].split(")")[0]
-            arg = f"{args[0]} {class_id}"
+            arg = f"{class_name} {class_id}"
             self.do_destroy(arg)
         elif args[1].startswith("update"):
-            arguments = args[1].split("(")[1].split(")")[0]
-            arguments = arguments.split(", ")
-            arg = f"{args[0]} {arguments[0]} {arguments[1]} {arguments[2]}"
-            self.do_update(arg)
+            line_str = str(args[1:]).split("(")[1].split(")")[0]
+            if ", {" not in line_str:
+                arguments = line_str.split(", ")
+                arg = f"{class_name} {arguments[0]} {arguments[1]} {arguments[2]}"
+                self.do_update(arg)
+            else:
+                _id = str(line_str[0:36])
+                _dict_str = str(line_str[38:])
+                my_dict = ast.literal_eval(_dict_str)
+                for key, val in my_dict.items():
+                    arg = f"{class_name} {_id} {key} {repr((val))}"
+                    self.do_update(arg)
 
 
 if __name__ == "__main__":
