@@ -35,7 +35,10 @@ class FileStorage:
             json.dump(my_dict, file)
 
     def reload(self):
-        """deserializes the JSON file to __objects (only if the JSON file (__file_path) exists"""
+        """
+        deserializes the JSON file to __objects (only if the JSON file
+        (__file_path) exists
+        """
         all_class = {
             "BaseModel": BaseModel,
             "User": User,
@@ -48,5 +51,6 @@ class FileStorage:
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 self.__objects = {
-                    key: all_class[val["__class__"]](**val) for key, val in json.load(file).items()
+                    key: all_class[val["__class__"]](**val)
+                    for key, val in json.load(file).items()
                 }
