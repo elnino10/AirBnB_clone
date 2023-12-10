@@ -107,8 +107,7 @@ class HBNBCommand(cmd.Cmd):
         if arg and arg not in all_class:
             print("** class doesn't exist **")
         elif arg:
-            print([str(v) for k, v in storage.all().items()
-                   if k.split(".")[0] == arg])
+            print([str(v) for k, v in storage.all().items() if k.split(".")[0] == arg])
         else:
             print([str(v) for k, v in storage.all().items()])
 
@@ -180,8 +179,7 @@ class HBNBCommand(cmd.Cmd):
             line_str = str(args[1:]).split("(")[1].split(")")[0]
             if ", {" not in line_str:
                 arguments = line_str.split(", ")
-                arg = f"{class_name} {arguments[0]}\
-                    {arguments[1]} {arguments[2]}"
+                arg = f"{class_name} {arguments[0]} {arguments[1]} {arguments[2]}"
                 self.do_update(arg)
             else:
                 _id = str(line_str[0:36])
