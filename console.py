@@ -107,7 +107,8 @@ class HBNBCommand(cmd.Cmd):
         if arg and arg not in all_class:
             print("** class doesn't exist **")
         elif arg:
-            print([str(v) for k, v in storage.all().items() if k.split(".")[0] == arg])
+            print([str(v) for k, v in storage.all().items()
+                   if k.split(".")[0] == arg])
         else:
             print([str(v) for k, v in storage.all().items()])
 
@@ -144,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
                             pass
                         else:
                             my_model = storage.all()[key]
-                            setattr(my_model, my_arg[2], eval(my_arg[3]))
+                            setattr(my_model, eval(my_arg[2]), eval(my_arg[3]))
                             storage.all()[key].save()
 
     def default(self, line):
@@ -179,14 +180,15 @@ class HBNBCommand(cmd.Cmd):
             line_str = str(args[1:]).split("(")[1].split(")")[0]
             if ", {" not in line_str:
                 arguments = line_str.split(", ")
-                arg = f"{class_name} {arguments[0]} {arguments[1]} {arguments[2]}"
+                arg = f"{class_name} {arguments[0]}"\
+                    f" {arguments[1]} {arguments[2]}"
                 self.do_update(arg)
             else:
                 _id = str(line_str[0:36])
                 _dict_str = str(line_str[38:])
                 my_dict = ast.literal_eval(_dict_str)
                 for key, val in my_dict.items():
-                    arg = f"{class_name} {_id} {key} {repr((val))}"
+                    arg = f"{class_name} {_id} {repr(key)} {repr((val))}"
                     self.do_update(arg)
 
 
