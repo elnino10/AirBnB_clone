@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+"""the test module for User class"""
+import unittest
+
+from models.amenity import Amenity
+
+
+class TestUser(unittest.TestCase):
+    """TestUser class for testing the User instance"""
+
+    amenity_model = Amenity()
+
+    def setUp(self):
+        """set up method for instance info"""
+        self.amenity_model.name = "Housing and Hospitality"
+
+    def test_user_info(self):
+        """tests the information of user"""
+        name = self.amenity_model.name
+        self.assertEqual(name, "Housing and Hospitality")
+
+    def test_user_info_type(self):
+        """tests for the type of the information"""
+        self.assertIsInstance(self.amenity_model.name, str)
