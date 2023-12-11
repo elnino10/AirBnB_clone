@@ -52,3 +52,11 @@ class TestBaseModel(unittest.TestCase):
         expected_dict["updated_at"] = self.model.updated_at.isoformat()
         expected_dict["__class__"] = self.model.__class__.__name__
         self.assertEqual(model_dict, expected_dict)
+
+    def test_to_dict_type(self):
+        """tests for the type returned by to_dict method"""
+        expected_dict = dict(self.model.__dict__)
+        expected_dict["created_at"] = self.model.created_at.isoformat()
+        expected_dict["updated_at"] = self.model.updated_at.isoformat()
+        expected_dict["__class__"] = self.model.__class__.__name__
+        self.assertIsInstance(expected_dict, dict)
