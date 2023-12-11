@@ -31,6 +31,24 @@ class TestBaseModel(unittest.TestCase):
         """tests for update date type"""
         self.assertIsInstance(self.model.updated_at, datetime.datetime)
 
-    # def test_print(self):
-    #     """test for string method"""
-    #     self.assertEqual()
+    def test_str(self):
+        """test for string method"""
+        output = (
+            f"[{self.model.__class__.__name__}] ({self.model.id}) {self.model.__dict__}"
+        )
+        self.assertEqual(str(self.model), output)
+
+    def test_save(self):
+        """test for save method"""
+        older_date = self.model.updated_at
+        self.model.save()
+        self.assertLess(older_date, self.model.updated_at)
+
+    def test_to_dict(self):
+        """test for to_dict method"""
+        model_dict = self.model.to_dict()
+        expected_dict = dict(self.model.__dict__)
+        expected_dict["created_at"] = self.model.created_at.isoformat()
+        expected_dict["updated_at"] = self.model.updated_at.isoformat()
+        expected_dict["__class__"] = self.model.__class__.__name__
+        self.assertEqual(model_dict, expected_dict)
