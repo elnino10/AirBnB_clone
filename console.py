@@ -181,7 +181,7 @@ class HBNBCommand(cmd.Cmd):
             if ", {" not in line_str:
                 arguments = line_str.split(", ")
                 arg = f"{class_name} {arguments[0]}"\
-                    f"{arguments[1]} {arguments[2]}"
+                    f" {arguments[1]} {arguments[2]}"
                 self.do_update(arg)
             else:
                 _id = str(line_str[0:36])
