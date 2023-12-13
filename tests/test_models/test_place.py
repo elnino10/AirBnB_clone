@@ -2,6 +2,7 @@
 """the test module for User class"""
 import unittest
 
+from models.base_model import BaseModel
 from models.place import Place
 
 
@@ -62,3 +63,7 @@ class TestUser(unittest.TestCase):
         self.assertIsInstance(self.place_model.longitude, float)
         self.assertIsInstance(self.place_model.latitude, float)
         self.assertIsInstance(self.place_model.amenity_ids, list)
+
+    def test_base_model_instance(self):
+        """Tests if City inherits from BaseModel."""
+        self.assertIsInstance(self.place_model, BaseModel)

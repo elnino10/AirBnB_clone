@@ -34,7 +34,8 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """test for string method"""
         output = (
-            f"[{self.model.__class__.__name__}] ({self.model.id}) {self.model.__dict__}"
+            f"[{self.model.__class__.__name__}]"
+            f" ({self.model.id}) {self.model.__dict__}"
         )
         self.assertEqual(str(self.model), output)
 
@@ -60,3 +61,17 @@ class TestBaseModel(unittest.TestCase):
         expected_dict["updated_at"] = self.model.updated_at.isoformat()
         expected_dict["__class__"] = self.model.__class__.__name__
         self.assertIsInstance(expected_dict, dict)
+
+    def test_to_dict_new_attrs(self):
+        """Tests for attributes in instance after call to to_dict()"""
+        self.model.name = "NewName"
+        self.model.model_number = 20
+
+        new_dict = dict(self.model.__dict__)
+        new_dict["__class__"] = self.model.__class__.__name__
+        new_dict["created_at"] = self.model.created_at.isoformat()
+        new_dict["updated_at"] = self.model.updated_at.isoformat()
+
+        self.assertIn("name", self.model.to_dict())
+        self.assertIn("model_number", self.model.to_dict())
+        self.assertEqual(new_dict, self.model.to_dict())

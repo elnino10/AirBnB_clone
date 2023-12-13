@@ -2,6 +2,7 @@
 """the test module for User class"""
 import unittest
 
+from models.base_model import BaseModel
 from models.state import State
 
 
@@ -22,3 +23,7 @@ class TestUser(unittest.TestCase):
     def test_user_info_type(self):
         """tests for the type of the information"""
         self.assertIsInstance(self.state_model.name, str)
+
+    def test_base_model_instance(self):
+        """Tests if City inherits from BaseModel."""
+        self.assertIsInstance(self.state_model, BaseModel)

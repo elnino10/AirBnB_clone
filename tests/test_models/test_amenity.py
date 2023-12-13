@@ -3,6 +3,7 @@
 import unittest
 
 from models.amenity import Amenity
+from models.base_model import BaseModel
 
 
 class TestUser(unittest.TestCase):
@@ -22,3 +23,7 @@ class TestUser(unittest.TestCase):
     def test_user_info_type(self):
         """tests for the type of the information"""
         self.assertIsInstance(self.amenity_model.name, str)
+
+    def test_base_model_instance(self):
+        """Tests if City inherits from BaseModel."""
+        self.assertIsInstance(self.amenity_model, BaseModel)
