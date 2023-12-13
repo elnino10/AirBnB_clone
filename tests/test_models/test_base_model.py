@@ -75,3 +75,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("name", self.model.to_dict())
         self.assertIn("model_number", self.model.to_dict())
         self.assertEqual(new_dict, self.model.to_dict())
+
+    def test_attributes_exist(self):
+        """Tests that attributes exist"""
+        self.assertEqual(hasattr(self.model, "id"), True)
+        self.assertEqual(hasattr(self.model, "created_at"), True)
+        self.assertEqual(hasattr(self.model, "updated_at"), True)

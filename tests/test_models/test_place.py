@@ -67,3 +67,17 @@ class TestUser(unittest.TestCase):
     def test_base_model_instance(self):
         """Tests if City inherits from BaseModel."""
         self.assertIsInstance(self.place_model, BaseModel)
+
+    def test_attributes_exist(self):
+        """Tests that attributes exist"""
+        self.assertEqual(hasattr(self.place_model, "city_id"), True)
+        self.assertEqual(hasattr(self.place_model, "user_id"), True)
+        self.assertEqual(hasattr(self.place_model, "name"), True)
+        self.assertEqual(hasattr(self.place_model, "description"), True)
+        self.assertEqual(hasattr(self.place_model, "number_rooms"), True)
+        self.assertEqual(hasattr(self.place_model, "number_bathrooms"), True)
+        self.assertEqual(hasattr(self.place_model, "max_guest"), True)
+        self.assertEqual(hasattr(self.place_model, "price_by_night"), True)
+        self.assertEqual(hasattr(self.place_model, "longitude"), True)
+        self.assertEqual(hasattr(self.place_model, "latitude"), True)
+        self.assertEqual(hasattr(self.place_model, "amenity_ids"), True)

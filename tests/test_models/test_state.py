@@ -27,3 +27,7 @@ class TestUser(unittest.TestCase):
     def test_base_model_instance(self):
         """Tests if City inherits from BaseModel."""
         self.assertIsInstance(self.state_model, BaseModel)
+
+    def test_attributes_exist(self):
+        """Tests that attributes exist"""
+        self.assertEqual(hasattr(self.state_model, "name"), True)
