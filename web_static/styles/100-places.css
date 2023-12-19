@@ -180,3 +180,46 @@
     text-align: start;
     margin-top: 0;
 }
+
+@media screen and (max-width: 769px) {
+    .places {
+        padding: 0 30px;
+    }
+}
+
+@media screen and (max-width: 431px) {
+    .places {
+        padding: 0 10px;
+    }
+    .places h1 {
+        font-size: 25px;
+    }
+    .articles article {
+        width: 300px;
+    }
+    .price_by_night {
+    width: 60px;
+    font-size: 20px;
+    padding: 20px 0;
+    }
+    .articles h2 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .places {
+        padding: 0 20px;
+    }
+    .places h1 {
+        font-size: 20px;
+    }
+    .articles article {
+        width: 260px;
+    }
+    .price_by_night {
+    width: 60px;
+    font-size: 20px;
+    padding: 20px 0;
+    }
+}

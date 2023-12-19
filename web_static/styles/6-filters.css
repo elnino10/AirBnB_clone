@@ -76,19 +76,81 @@
 .popover ul {
     list-style: none;
     margin: 20px 10px;
-    /* padding: 5px 25px; */
 }
 
 .popover ul li {
     margin: 5px 0;
 }
 
-.popover ul li p{
+.popover ul p{
     margin-left: 20px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 769px) {
     .filters {
         height: 50px;
+        width: 95%;
+        margin-left: 20px;
+    }
+
+    .filters h3 {
+        margin-left: 20px;
+        margin-bottom: 5px;
+    }
+
+    .filters h4 {
+        display: none;
+    }
+
+    .filters button {
+        height: 35px;
+    }
+
+    .locations .popover,
+    .amenity .popover  {
+        top: 3.5em;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .popover ul {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 431px) {
+    .filters {
+        margin-left: 8px;
+    }
+    .popover ul h2 {
+        font-size: 14px;
+    }
+    .popover ul p {
+        font-size: 12px;
+        margin-left: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .amenity li {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .filters {
+        height: 40px;
+        width: 95%;
+    }
+    .filters h3 {
+        margin-left: 10px;
+    }
+    .filters button {
+        height: 25px;
+        font-size: 14px;
+    }
+    .locations .popover,
+    .amenity .popover  {
+        top: 2.8em;
     }
 }

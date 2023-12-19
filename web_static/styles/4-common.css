@@ -18,12 +18,18 @@ body {
 
 @media screen and (max-width: 768px) {
     .container {
-        width: 500px;
+        width: 750px;
     }
 }
 
-@media screen and (max-width: 412px) {
+@media screen and (max-width: 431px) {
     .container {
         width: 400px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .container {
+        width: 370px;
     }
 }
